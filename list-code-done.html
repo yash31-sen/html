@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Animated To-Do List</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.3/anime.min.js"></script>
+</head>
+<body>
+  <ul class="todo-list">
+    <li class="todo-item">
+      <input type="checkbox" class="todo-checkbox" />
+      <label for="todo-checkbox">Task 1</label>
+    </li>
+    <li class="todo-item">
+      <input type="checkbox" class="todo-checkbox" />
+      <label for="todo-checkbox">Task 2</label>
+    </li>
+    <li class="todo-item">
+      <input type="checkbox" class="todo-checkbox" />
+      <label for="todo-checkbox">Task 3</label>
+    </li>
+  </ul>
+
+  <script>
+    // Add a click event listener to each todo item
+    const todoItems = document.querySelectorAll('.todo-item');
+    todoItems.forEach(todoItem => {
+      todoItem.addEventListener('click', () => {
+        // Toggle the completed class on the todo item
+        todoItem.classList.toggle('completed');
+
+        // Animate the todo item
+        anime({
+          targets: todoItem,
+          transform: 'scale(1.2)',
+          duration: 200,
+          easing: 'easeInOutQuad',
+          complete: function() {
+            anime({
+              targets: todoItem,
+              transform: 'scale(1)',
+              duration: 200,
+              easing: 'easeInOutQuad'
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
